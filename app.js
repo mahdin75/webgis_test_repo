@@ -34,3 +34,33 @@ console.log(d3);
 console.log(d4);
 console.log(d5);
 console.log(d6);
+
+const paragraphElement = document.getElementById("content");
+
+paragraphElement.innerHTML = "This content has been changed by DOM and JS";
+
+const paragraphElementsInfo = document.getElementsByClassName("info");
+
+paragraphElementsInfo[1].innerHTML =
+  "This content has been changed by DOM and JS. It was footer 2";
+
+const footer1 = document.getElementsByClassName("info")[0];
+
+footer1.addEventListener("dblclick", function () {
+  footer1.style.backgroundColor = "red";
+  footer1.innerHTML = "You clicked on this paragraph";
+});
+
+document.querySelectorAll("");
+
+// const car = {
+//   start: function () {
+//     console.log("start");
+//     return 1;
+//   },
+//   model: "BMW",
+//   color: "red",
+//   break: function () {
+//     return 1;
+//   },
+// };
