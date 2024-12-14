@@ -51,7 +51,15 @@ footer1.addEventListener("dblclick", function () {
   footer1.innerHTML = "You clicked on this paragraph";
 });
 
-document.querySelectorAll("");
+const footer5 = document.getElementsByClassName("info")[4];
+
+footer5.addEventListener("click", function () {
+  fetch("https://catfact.ninja/fact")
+    .then((response) => response.json())
+    .then((json) => {
+      console.log(json);
+    });
+});
 
 // const car = {
 //   start: function () {
