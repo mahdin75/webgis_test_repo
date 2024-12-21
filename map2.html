@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OpenLayers WMS Example</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/openlayers@4.6.5/dist/ol.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      #map {
+        width: 100%;
+        height: 100vh;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script src="https://cdn.jsdelivr.net/npm/openlayers@4.6.5/dist/ol-debug.js"></script>
+    <script>
+      // Base OSM layer
+      const baseLayer = new ol.layer.Tile({
+        source: new ol.source.OSM(),
+      });
+
+      // WMS layer
+      const wmsLayer = new ol.layer.Tile({
+        source: new ol.source.TileWMS({
+          url: "http://localhost:8080/geoserver/wms",
+          params: {
+            LAYERS: "cite:Ostan", // The layer name
+            TILED: true,
+          },
+          serverType: "geoserver", // Optional, if you know the server type
+        }),
+      });
+
+      // WMS layer
+      const wmsLayer2 = new ol.layer.Tile({
+        source: new ol.source.TileWMS({
+          url: "http://localhost:8080/geoserver/wms",
+          params: {
+            LAYERS: "cite:Shahrestan", // The layer name
+            TILED: true,
+          },
+          serverType: "geoserver", // Optional, if you know the server type
+        }),
+      });
+
+      // Create the map
+      const map = new ol.Map({
+        target: "map",
+        layers: [baseLayer, wmsLayer, wmsLayer2],
+        view: new ol.View({
+          center: ol.proj.fromLonLat([51, 33]), // Centered on USA
+          zoom: 4,
+        }),
+      });
+    </script>
+  </body>
+</html>
